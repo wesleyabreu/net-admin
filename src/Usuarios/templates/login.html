@@ -1,0 +1,29 @@
+{% extends 'site/base.html' %}
+
+{% block frame_title %}
+Autentique-se
+{% endblock frame_title %}
+
+{% block body %}
+<br>
+<form action="{% url 'login' %}" method="POST">
+    {% csrf_token %}
+    <div class="input-group">
+        <span class="input-group-text">Usuário: </span>
+        <input type="text" class="form-control" placeholder="Usuário ..." name="usuario">
+    </div>
+    <br>
+    <div class="input-group">
+        <span class="input-group-text">Senha: </span>
+        <input type="password" class="form-control" placeholder="Senha ..." name="senha">
+    </div>
+    {% if erro %}
+    <br>
+    <div class="alert alert-danger" role="alert">
+        {{ erro }}
+    </div>
+{% endif %}
+    <br>
+    <input type="submit" value="Logar" class="btn btn-primary">
+</form>
+{% endblock body %}

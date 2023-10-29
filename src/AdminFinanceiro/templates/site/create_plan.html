@@ -1,0 +1,36 @@
+{% extends 'site/base.html' %}
+
+{% block user_title %}
+  Administrador Financeiro
+{% endblock user_title %}
+
+{% block frame_title %}
+  Plano de assinatura
+{% endblock frame_title %}
+
+{% block body %}
+  <form class="mt-4" method="POST" action="{% url 'create_plan' %}">
+    {% csrf_token %}
+    <div class="mb-3 row">
+      <label class="col-sm-2 col-form-label" for="name">Nome:</label>
+      <div class="col-sm-6">
+        <input class="form-control" id="name" name="name" type="text" required>
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <label class="col-sm-2 col-form-label" for="price">Valor:</label>
+      <div class="col-sm-6">
+        <input class="form-control" id="price" name="price" type="number" required>
+      </div>
+    </div>
+    
+    <div class="mb-3 row">
+      <div class="col-sm-12">
+        <p class="text-end mt-5">
+          <button class="btn btn-primary" type="submit">Salvar</button>
+        </p>
+      </div>
+    </div>
+  </form>
+{% endblock body %}

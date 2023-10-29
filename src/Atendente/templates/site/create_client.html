@@ -1,0 +1,84 @@
+{% extends 'site/base.html' %}
+
+{% block user_title %}
+  Atendente
+{% endblock user_title %}
+
+{% block frame_title %}
+Cadastrar cliente
+{% endblock frame_title %}
+
+{% block body %}
+  <form class="mt-4" method="POST" action="{% url 'create_client' %}">
+    {% csrf_token %}
+    <div class="row mb-3">
+      <label class="col-md-2 col-form-label" for="name">Nome completo:</label>
+      <div class="col-md-6">
+        <input class="form-control" id="name" name="name" type="text" required>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label class="col-md-2 col-form-label" for="cpf">CPF:</label>
+      <div class="col-md-6">
+        <input class="form-control" id="cpf" name="cpf" type="text" required>
+      </div>
+    </div>
+    
+    <div class="row mb-3">
+      <label class="col-md-2 col-form-label" for="rg">RG:</label>
+      <div class="col-md-6">
+        <input class="form-control" id="rg" name="rg" type="text" required>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label class="col-md-2 col-form-label" for="birthday">Data de nascimento:</label>
+      <div class="col-md-6">
+        <input class="form-control" id="birthday" name="birthday" type="date" required>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label class="col-md-2 col-form-label" for="address">Endereço:</label>
+      <div class="col-md-6">
+        <input class="form-control" id="address" name="address" type="text" required>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label class="col-md-2 col-form-label" for="plan">Plano contratado:</label>
+      <div class="col-md-6">
+        <select class="form-select" id="plan" name="plan" required>
+          {% for plan in plans %}
+            <option value="{{ plan.id }}">{{ plan.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+
+    <h2 class="mt-5">Agendar instalação</h2>
+
+    <div class="row mb-3">
+      <label class="col-md-2 col-form-label" for="install_date">Data:</label>
+      <div class="col-md-6">
+        <input class="form-control" id="install_date" name="install_date" type="date" required>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label class="col-md-2 col-form-label" for="install_hour">Hora:</label>
+      <div class="col-md-6">
+        <input class="form-control" id="install_hour" name="install_hour" type="time" required>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-12">
+        <p class="text-end mt-5">
+          <button class="btn btn-primary" type="submit">Cadastrar</button>
+        </p>
+      </div>
+    </div>
+  </form>
+{% endblock body %}

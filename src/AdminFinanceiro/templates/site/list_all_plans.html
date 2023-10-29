@@ -1,0 +1,39 @@
+{% extends 'site/base.html' %}
+
+{% block user_title %}
+  Administrador Financeiro
+{% endblock user_title %}
+
+{% block frame_title %}
+  Planos de assinatura
+{% endblock frame_title %}
+
+{% block body %}
+  <div class="row">
+    <div class="col">
+      <p class="text-center">
+        <a class="btn btn-primary mt-4" href="{% url 'create_plan' %}">Adicionar Novo</a>
+      </p>
+    </div>
+  </div>
+
+  <table class="table table-hover mt-3">
+    <thead>
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">Valor</th>
+        <th scope="col" colspan="2" class="text-center">Ação</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for plan in plans %}
+        <tr>
+          <td>{{ plan.name }}</td>
+          <td>R$ {{ plan.price }}</td>
+          <td class="text-center"><a class="btn btn-primary mt-2" href="{% url 'update_plan' plan.id %}">Modificar</a></td>
+          <td class="text-center"><a class="btn btn-danger mt-2" href="{% url 'delete_plan' plan.id %}">Excluir</a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock body %}
