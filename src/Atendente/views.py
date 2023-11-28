@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from . import models
 from . import methods
 from django.contrib.auth.decorators import login_required
+from EmailSender.send_register import *
 
 @login_required(login_url="/")
 def create_client(request):
@@ -24,11 +25,23 @@ def create_client(request):
             request.POST['name'],
             request.POST['cpf'],
             request.POST['rg'],
+            request.POST['email'],
             request.POST['birthday'],
             request.POST['address'],
             request.POST['install_date'],
             request.POST['install_hour'],
             int(request.POST['plan']))
+        
+        plan = models.Plan.objects.get(id=int(request.POST['plan']))
+
+        send_register(
+            request.POST['email'], 
+            request.POST['name'], 
+            plan.name, 
+            plan.price, 
+            request.POST['address'],
+            request.POST['install_date'], 
+            request.POST['install_hour'])
 
         return redirect('create_client')
 
@@ -66,6 +79,7 @@ def update_client(request, id):
             request.POST['name'],
             request.POST['cpf'],
             request.POST['rg'],
+            request.POST['email'],
             request.POST['birthday'],
             request.POST['address'])
 

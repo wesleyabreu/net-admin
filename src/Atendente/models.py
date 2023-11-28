@@ -18,6 +18,7 @@ class Person(models.Model):
     rg = models.CharField('RG', max_length=14, default='')
     birthday = models.DateField('Data de Nascimento')
     address = models.CharField('Endereço', max_length=64, default='')
+    email = models.EmailField('Email', max_length=64, default='')
 
 
 class Contract(models.Model):

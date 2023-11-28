@@ -5,7 +5,7 @@ from . import models
 from datetime import datetime
 
 
-def create_client(name, cpf, rg, birthday, address, install_date, install_hour, plan_id):
+def create_client(name, cpf, rg, email, birthday, address, install_date, install_hour, plan_id):
     """
     Cadastra um Cliente na base de dados (CREATE).
     """
@@ -13,6 +13,7 @@ def create_client(name, cpf, rg, birthday, address, install_date, install_hour, 
     person.name = name
     person.cpf = cpf
     person.rg = rg
+    person.email = email
     person.birthday = birthday
     person.address = address
     person.save()
@@ -41,7 +42,7 @@ def list_all_clients():
     return models.Client.objects.all()
 
 
-def update_client(client, posted_plan_id, name, cpf, rg, birthday, address):
+def update_client(client, posted_plan_id, name, cpf, rg, email, birthday, address):
     """
     Modifica dados do cliente cadastrados na base de dados (UPDATE).
     """
@@ -59,6 +60,7 @@ def update_client(client, posted_plan_id, name, cpf, rg, birthday, address):
     client.person.name = name
     client.person.cpf = cpf
     client.person.rg = rg
+    client.person.email = email
     client.person.birthday = birthday
     client.person.address = address
     client.person.save()
