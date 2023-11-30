@@ -1,5 +1,6 @@
 # Net Admin Gerência de Provedor
-Sistema integrado para gerência de provedor de internet 
+Sistema integrado para gerência de provedor de internet, com cadastro de planos e clientes.
+Projeto prático para a disciplina GAC116 - Programação WEB
 
 -------------------------------
 
